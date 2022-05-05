@@ -1,5 +1,5 @@
 const color = document.querySelector(".color");
-const rgbToHexBtn = document.querySelector(".rgbToHexBtn");
+const rgbToHexBtn = document.getElementById("rgbToHexBtn");
 const changeBtn = document.getElementById("changeBtn");
 
 const colorType = Object.freeze({
@@ -8,7 +8,10 @@ const colorType = Object.freeze({
 });
 
 let colorState = colorType.rgb;
-let currentColor = {};
+let currentColor = {
+    hex: "#C3E0FE",
+    rgb: {r: 195, g: 224, b: 254}
+};
 
 changeBtn.addEventListener("click", () => {
     const rgb = getRandomRGBColor();
@@ -36,6 +39,7 @@ function changeToHex() {
 function updateColorsState(rgb) {
     currentColor['rgb'] = rgb;
     currentColor['hex'] = rgbToHex(rgb);
+    console.log(currentColor);
 }
 
 function rgbToHex(rgb) {
@@ -49,10 +53,4 @@ function rgbToHex(rgb) {
 
 function getRandomRGBColor() {
     return { r: getRandomInt(0, 255), g: getRandomInt(0, 255), b: getRandomInt(0, 255) };
-}
-
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min);
 }
